@@ -159,7 +159,8 @@ Kilo uses this local MCP shape:
         "serve"
       ],
       "environment": {},
-      "enabled": true
+      "enabled": true,
+      "timeout": 600000
     }
   },
   "permission": {
@@ -174,13 +175,16 @@ Use the interpreter printed by:
 conda run --name anaconda-mcp python -c "import sys; print(sys.executable)"
 ```
 
-On Windows, use forward slashes in JSON or escape every backslash. Configuration
-choices are:
+The ten-minute timeout accommodates dependency solves and environment creation.
+If a request times out, inspect the exact environment before retrying because the
+conda process may have continued. On Windows, use forward slashes in JSON or
+escape every backslash. Configuration choices are:
 
 - Project Kilo config: merge into `kilo.json` or `kilo.jsonc`.
 - Global Kilo config: merge into `~/.config/kilo/kilo.json` or `.jsonc`.
 - Project compatibility config: run the OpenCode wizard from the project root,
-  then separately add the approval permission to the generated `opencode.json`.
+  then separately add the approval permission and `600000` server timeout to the
+  generated `opencode.json`.
 
 Do not use the vendor's global OpenCode path as Kilo global configuration. It
 writes `~/.config/opencode/opencode.json`, while Kilo's global root is

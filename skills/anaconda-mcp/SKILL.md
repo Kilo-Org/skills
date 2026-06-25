@@ -136,7 +136,8 @@ Merge this entry into the existing Kilo config:
         "serve"
       ],
       "environment": {},
-      "enabled": true
+      "enabled": true,
+      "timeout": 600000
     }
   },
   "permission": {
@@ -157,10 +158,11 @@ anaconda mcp setup --client opencode --scope project
 ```
 
 It creates `<project>/opencode.json`, which Kilo reads as a legacy project
-config. The wizard does not add Kilo's approval rule. Immediately merge
-`"anaconda-mcp_*": "ask"` into the project's `permission` object before using
-the server. Do not use the wizard's global OpenCode path as Kilo global config;
-it writes `~/.config/opencode/opencode.json`, not `~/.config/kilo/kilo.json`.
+config. The wizard does not add Kilo's approval rule or the longer request
+timeout needed for conda solves. Immediately merge `"anaconda-mcp_*": "ask"`
+into the project's `permission` object and set the server's `timeout` to
+`600000` before using it. Do not use the wizard's global OpenCode path as Kilo
+global config; it writes `~/.config/opencode/opencode.json`, not `~/.config/kilo/kilo.json`.
 
 ## Verify The Connection
 
@@ -170,6 +172,9 @@ it writes `~/.config/opencode/opencode.json`, not `~/.config/kilo/kilo.json`.
 4. Compare the result with `conda env list`.
 5. Ask for packages in one non-sensitive environment and compare with
    `conda list --name <env>`.
+6. If a create or install request times out, inspect the exact environment before
+   retrying; the conda process may have continued after the client stopped
+   waiting.
 
 `anaconda mcp clients` reports wizard-managed configurations, but it may not
 recognize a manually maintained Kilo global config. Do not use it as the only

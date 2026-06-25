@@ -145,6 +145,8 @@ order-sensitive; place broad rules before later specific overrides.
 - Verify the command contains the dedicated environment's absolute Python path.
 - Confirm the module invocation is `python -m anaconda_mcp serve`.
 - Check client MCP logs before reinstalling.
+- If a long create or install request timed out, inspect the exact environment
+  before retrying; the underlying conda process may have continued.
 
 ### Authentication fails
 
