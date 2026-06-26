@@ -1,10 +1,11 @@
 ---
 name: anaconda-mcp
 description: >-
-  This skill should be used when installing, configuring, using, securing, or
-  troubleshooting Anaconda MCP with Kilo, OpenCode, Claude, Cursor, VS Code, or
-  Windsurf; creating or inspecting conda environments; resolving Python imports
-  to conda packages; or evaluating conda-pypi instead of direct pip installs.
+  This skill should be used when the user explicitly mentions Anaconda MCP or
+  asks to install, configure, secure, use, or troubleshoot that server with Kilo,
+  OpenCode, Claude, Cursor, VS Code, or Windsurf. It also covers conda environment
+  and package operations performed through Anaconda MCP, and evaluating
+  conda-pypi as an alternative to direct pip within that workflow.
 license: Apache-2.0
 compatibility: >-
   Requires a supported conda installation, network access, an Anaconda account,
@@ -80,11 +81,17 @@ conda-forge-based installation, use that channel only when organization policy
 and applicable Anaconda terms permit it; do not add it persistently as a side
 effect.
 
-The user must accept the current beta agreement before tools can run:
+The user must read the current agreement and personally accept it before tools
+can run. First show the agreement and status:
 
 ```bash
-anaconda mcp terms accept
+anaconda mcp terms
+anaconda mcp terms status
 ```
+
+Explain that `anaconda mcp terms accept` persists acceptance immediately without
+a confirmation prompt. Never run it for the user; after reviewing the agreement,
+they must execute that command themselves.
 
 Do not pin a version unless reproducibility requires it. When pinning, compare
 the current stable conda package and stable GitHub release; never select a
