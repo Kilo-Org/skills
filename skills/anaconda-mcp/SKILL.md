@@ -37,8 +37,8 @@ then use Anaconda MCP for conda operations.
   `anaconda-assistant-mcp` plugin or the unrelated `mcp` Python SDK.
 - Prefer local stdio transport and a dedicated conda environment. Do not expose
   HTTP transport unless the user explicitly requires and secures it.
-- Never accept legal terms for the user. Let the user accept them interactively,
-  unless they explicitly direct an authorized non-interactive setup.
+- Never accept legal terms for the user. Let the user read the current agreement
+  and accept it personally before configuring any non-interactive process.
 - Prefer `anaconda login`, which stores credentials in the system keyring. Never
   commit API keys in MCP, editor, shell, or environment configuration.
 - Inspect before mutating. Identify the exact target environment, packages,
